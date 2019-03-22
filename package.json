@@ -1,0 +1,35 @@
+{
+	"name": "chars",
+	"version": "1.0.0",
+	"description": "Easy copy and find characters",
+	"author": "Sil van Diepen",
+	"private": true,
+	"scripts": {
+		"dev": "sh scripts/dev.sh",
+		"devlocal": "sh scripts/devlocal.sh",
+		"staging": "sh scripts/staging.sh",
+		"production": "sh scripts/production.sh",
+		"lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+		"precommit": "lint"
+	},
+	"dependencies": {
+		"nuxt": "^2.3.2",
+		"@nuxtjs/axios": "^5.3.6"
+	},
+	"devDependencies": {
+		"@nuxtjs/google-analytics": "^2.0.2",
+		"nuxt-rfg-icon": "^0.5.0",
+		"henris": "^0.6.1",
+		"babel-eslint": "^10.0.1",
+		"eslint": "^5.9.0",
+		"eslint-loader": "^2.0.0",
+		"eslint-plugin-vue": "^4.0.0",
+		"eslint-plugin-prettier": "^3.0.0",
+		"node-sass": "^4.9.3",
+		"sass-loader": "^7.1.0"
+	},
+	"browserslist": [
+		"last 2 versions",
+		"not dead"
+	]
+}
