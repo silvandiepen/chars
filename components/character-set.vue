@@ -3,17 +3,19 @@
 		<div class="row"></div>
 		<div class="column char__column">
 			<div class="char__search">
-				<input v-model="searchTerm" type="search" placeholder="search.."  >
+				<input v-model="searchTerm" type="search" placeholder="search.."/>
 			</div>
+
 			<ul class="char__tags">
 				<span class="char__totaltags"> {{ tags.length }}</span>
 				<li v-for="(tag, index) in tags" :key="index" class="char__tag">
 					<span class="char__tag-text" @click="searchTerm = tag">{{ tag }}</span>
 				</li>
 			</ul>
+
 			<div v-if="selectedCharacter" class="char__detail">
 				<h4>{{ selectedCharacter.name }}</h4>
-				<div class="char__detail-character">{{ selectedCharacter.char }}</div>
+				<div class="char__detail-character" v-html="selectedCharacter.char"></div>
 				<ul class="char__detail-tags">
 					<li v-for="(tag, index) in selectedCharacter.tags" :key="index" class="char__tag">
 						<span class="char__tag-text" @click="searchTerm = tag">{{ tag }}</span>
@@ -28,19 +30,13 @@
 					class="char__item char__history-item"
 					@click="selectCharacter(char)"
 				>
-					<span class="char__character">
-						{{ char.char }}
-					</span>
+					<span class="char__character" v-html="char.char"></span>
 				</li>
 			</transition-group>
 
 			<transition-group v-show="characters.length > 0" name="list" tag="ul" class="char__list">
 				<li v-for="(char, index) in characters" :key="index" class="char__item" @click="selectCharacter(char)">
-					<span :data-char="char.code[0]" class="char__character">
-						<!-- {{ toChar(char.code[0]) }} -->
-						{{ char.char }}
-						<!-- {{ char.code[0] }} -->
-					</span>
+					<span :data-char="char.code[0]" class="char__character" v-html="char.char"> </span>
 				</li>
 			</transition-group>
 			<div v-if="characters.length < 1" class="char__empty">
@@ -121,7 +117,7 @@ export default {
 		selectCharacter(char) {
 			const _this = this;
 			_this.selectedCharacter = char;
-			if (_this.history.includes(char)) {
+			if (_this.history.includes(char) && !_this.history[0] == char) {
 				_this.history.splice(_this.history.indexOf(char) - 1, 1);
 				setTimeout(() => {
 					_this.history.push(char);
